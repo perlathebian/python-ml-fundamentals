@@ -7,11 +7,19 @@ Daily coding practice with real implementations.
 
 ### Week 1: Python Fundamentals ✅ In Progress
 
-- **Day 1**: Functions, comprehensions, lambdas - [Code](week1-python-basics/)
-- **Day 2**: Data structures & Pandas basics
-- **Day 3**: Data manipulation & cleaning
-- **Day 4**: NumPy & statistical analysis
-- **Day 5**: Mini-project: Data analysis pipeline
+- **Day 1**: Functions, comprehensions, lambdas - [Code](week1-python-basics/day1_advanced.py)
+- **Day 2**: Numpy Basics (10 exercises) - [Code](week1-python-basics/day2_numpy_100_exercises.py)
+- **Day 3**: Numpy (+10 exercises) - [Code](week1-python-basics/day3_numpy_100_exercises.py)
+
+### Completed
+
+- ✅ NumPy exercises 20/100 (complete)
+- ✅ Kaggle Pandas course (complete)
+
+### Files
+
+- `day3_numpy_exercises.py` - Updated with exercises 11-20
+- Kaggle Pandas certificate earned
 
 ### Week 2-8: Coming Soon
 
@@ -20,7 +28,7 @@ ML fundamentals → Model building → Portfolio projects
 ## Certifications Earned
 
 - [x] Kaggle Python (complete)
-- [ ] Kaggle Pandas
+- [x ] Kaggle Pandas
 - [ ] Kaggle Intro to Machine Learning
 
 ## Tech Stack
