@@ -23,7 +23,7 @@
 
 ### Time Invested: 8 hours
 
-## Day 2 - January 5, 2026
+## Day 2 - January 4, 2026
 
 **Focus:** NumPy fundamentals through exercises
 
@@ -37,7 +37,7 @@
 
 ### Files
 
-- `numpy_100_exercises.py` - 10 solved NumPy exercises with solutions
+- `day2_numpy_100_exercises.py` - 10 solved NumPy exercises with solutions
 
 ### Skills Acquired
 
@@ -47,12 +47,27 @@
 - Reshape arrays for different operations
 - Compute statistics across different axes
 
-### Time Spent
+### Time Invested: 5 hours
 
-- **Later**
+## Day 3 - January 5, 2026
+
+**Focus:** NumPy fundamentals through exercises
+
+### Completed
+
+- [x] 20/100 NumPy exercises (github.com/rougier/numpy-100)
+- [x] Array creation, indexing, slicing
+- [x] Broadcasting and vectorization
+- [x] Boolean indexing and fancy indexing
+- [x] Shape manipulation and axis operations
+- [x] Kaggle pandas certificate
+
+### Files
+
+- `day3_numpy_100_exercises.py` - 10 more solved NumPy exercises with solutions
+
+### Time Invested: 5 hours
 
 ### Next
 
-- Day 3: Complete remaining 25 NumPy exercises
-- Start Pandas fundamentals
 - Begin Titanic dataset EDA project
