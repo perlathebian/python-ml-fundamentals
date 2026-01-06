@@ -72,27 +72,64 @@ import numpy as np
 
 
 #### 31. How to ignore all numpy warnings (not recommended)? (★☆☆)
+# global
+# defaults = np.seterr(all="ignore")
+# Z = np.ones(1) / 0
+# back to default
+# _ = np.seterr(**defaults)
+# context manager: recommended; warnings ignored only inside this block, automatically restored afterward
+# with np.errstate(all="ignore"):
+#     np.arange(3) / 0
 
 #### 32. Is the following expressions true? (★☆☆)
-
-# np.sqrt(-1) == np.emath.sqrt(-1)
-
+# np.sqrt(-1) == np.emath.sqrt(-1) --> no: False; nan != 1j
 
 #### 33. How to get the dates of yesterday, today and tomorrow? (★☆☆)
+# today = np.datetime64('today')
+# yesterday = today - np.timedelta64(1)
+# tomorrow  = today + np.timedelta64(1)
+# print(today, yesterday, tomorrow)
 
 #### 34. How to get all the dates corresponding to the month of July 2016? (★★☆)
+# Z = np.arange('2016-07', '2016-08', dtype='datetime64[D]')
+# print(Z)
 
 #### 35. How to compute ((A+B)*(-A/2)) in place (without copy)? (★★☆)
+#np.add(A, B, out=B)        # B = A + B
+#np.divide(A, 2, out=A)    # A = A / 2
+#np.negative(A, out=A)     # A = -A
+#np.multiply(A, B, out=A)  # A = A * B
 
 #### 36. Extract the integer part of a random array of positive numbers using 4 different methods (★★☆)
+# Z = np.random.uniform(0,10,10)
+# print(Z - Z%1)
+# print(Z // 1)
+# print(np.floor(Z))
+# print(Z.astype(int))
+# print(np.trunc(Z))
 
 #### 37. Create a 5x5 matrix with row values ranging from 0 to 4 (★★☆)
+# broadacsting
+# M = np.zeros((5,5))
+# M += np.arange(5)
+# or without broadcasting
+# M = np.tile(np.arange(5), (5,1))
+# print(M)
 
 #### 38. Consider a generator function that generates 10 integers and use it to build an array (★☆☆)
+# def generate():
+#     for x in range(10):
+#         yield x
+# Z = np.fromiter(generate(),dtype=float,count=-1)
+# print(Z)
 
 #### 39. Create a vector of size 10 with values ranging from 0 to 1, both excluded (★★☆)
+# np.linspace(0,1,11,endpoint=False)[1:]
 
 #### 40. Create a random vector of size 10 and sort it (★★☆)
+# Z = np.random.random(10)
+# Z.sort()
+# print(Z)
 
 #### 41. How to sum a small array faster than np.sum? (★★☆)
 
