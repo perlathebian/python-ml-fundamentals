@@ -2,7 +2,7 @@
 Day 4: NumPy 100 Exercises
 Date: January 6, 2026
 Source: https://github.com/rougier/numpy-100
-Progress: /100 
+Progress: 50/100 
 """
 
 import numpy as np
@@ -132,24 +132,66 @@ import numpy as np
 # print(Z)
 
 #### 41. How to sum a small array faster than np.sum? (★★☆)
+# Z = np.arange(10)
+# sum_Z = np.add.reduce(Z)
+# print(Z)
+# print(sum_Z)
 
 #### 42. Consider two random arrays A and B, check if they are equal (★★☆)
+# A = np.random.randint(0,2,5)
+# B = np.random.randint(0,2,5)
+# equal = np.allclose(A,B)
+# print(equal)
 
 #### 43. Make an array immutable (read-only) (★★☆)
+# Z = np.zeros(10)
+# Z.flags.writeable = False
+# Z[0] = 1
+# print(Z)
 
 #### 44. Consider a random 10x2 matrix representing cartesian coordinates, convert them to polar coordinates (★★☆)
+# Z = np.random.random((10,2))
+# X,Y = Z[:,0], Z[:,1]
+# R = np.sqrt(X**2+Y**2)
+# T = np.arctan2(Y,X)
+# print(R)
+# print(T)
 
 #### 45. Create random vector of size 10 and replace the maximum value by 0 (★★☆)
+# Z = np.random.random(10)
+# Z[Z.argmax()] = 0
+# print(Z)
 
 #### 46. Create a structured array with `x` and `y` coordinates covering the [0,1]x[0,1] area (★★☆)
+# M = np.zeros((5,5), [('x',float),('y',float)])
+# M['x'], M['y'] = np.meshgrid(np.linspace(0,1,5),np.linspace(0,1,5))
+# print(M)
 
 #### 47. Given two arrays, X and Y, construct the Cauchy matrix C (Cij =1/(xi - yj)) (★★☆)
+# X = np.arange(8)
+# Y = X + 0.5
+# C = 1.0 / np.subtract.outer(X, Y)
+# print(np.linalg.det(C))
 
 #### 48. Print the minimum and maximum representable values for each numpy scalar type (★★☆)
+# for dtype in [np.int8, np.int32, np.int64]:
+#    print(np.iinfo(dtype).min)
+#    print(np.iinfo(dtype).max)
+# for dtype in [np.float32, np.float64]:
+#    print(np.finfo(dtype).min)
+#    print(np.finfo(dtype).max)
+#    print(np.finfo(dtype).eps)
 
 #### 49. How to print all the values of an array? (★★☆)
+# np.set_printoptions(threshold=float("inf"))
+# M = np.zeros((40,40))
+# print(M)
 
 #### 50. How to find the closest value (to a given scalar) in a vector? (★★☆)
+# Z = np.arange(100)
+# v = np.random.uniform(0,100)
+# index = (np.abs(Z-v)).argmin()
+# print(Z[index])
 
 #### 51. Create a structured array representing a position (x,y) and a color (r,g,b) (★★☆)
 
