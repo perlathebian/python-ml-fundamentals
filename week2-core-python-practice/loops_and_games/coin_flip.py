@@ -1,0 +1,12 @@
+import random
+
+h_count, t_count = 0, 0
+for i in range(100):  # Perform 100 coin flips.
+    if random.randint(0, 1) == 0:
+        print('H', end=' ')
+        h_count += 1
+    else:
+        print('T', end=' ')
+        t_count += 1
+print()  # Print one newline at the end.
+print(h_count, t_count)
