@@ -91,6 +91,13 @@ The goal is to become comfortable writing, debugging, and structuring Python pro
 
 ---
 
+#### Numerical computing (NumPy fundamentals)
+
+- **`numpy_basics.py`**  
+  Practice script covering NumPy array creation, indexing, slicing, reshaping, boolean masking, sorting, concatenation, and dimensional analysis, with inline annotations for each core concept.
+
+---
+
 ### Outcome
 
 By the end of this week, I am able to:
