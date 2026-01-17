@@ -1,0 +1,237 @@
+import numpy as np
+import pandas as pd
+
+
+# SERIES
+
+list_1 = ['a', 'b', 'c', 'd']
+labels = [1,2,3,4]
+ser_1 = pd.Series(data=list_1, index=labels)
+# print(ser_1)
+
+# print('-------------------------------------------------------------------')
+
+arr_1 = np.array([1,2,3,4])
+ser_2 = pd.Series(arr_1)
+# print(ser_2)
+# # getting type of series
+# print(ser_2.dtype)
+# # adding series together (same for -, *, /)
+# print(ser_2+ser_2)
+# # passing series into numpy methods
+# print(np.exp(ser_2))
+
+# print('-------------------------------------------------------------------')
+
+dict_1 = {'f_name': 'Perla', 'l_name': 'Thebian', 'age': 23}
+ser_3 = pd.Series(dict_1)
+# print(ser_3)
+# print(ser_3['f_name'])
+
+
+# print('-------------------------------------------------------------------')
+
+
+# # assigning name to series
+ser_4 = pd.Series({4: 5, 5: 6, 6: 7, 7: 8}, name='random_nums')
+# print(ser_4.name)
+
+# print(ser_2+ser_4) #labels dont line up so addition wont work
+# print(ser_2)
+# print(ser_4)
+
+
+print('-------------------------------------------------------------------')
+print('-------------------------------------------------------------------')
+
+
+# DATAFRAMES
+
+arr_2 = np.random.randint(10, 50, size=((2, 3)))
+# print(arr_2)
+df_1 = pd.DataFrame(arr_2, ['A', 'B'], ['C', 'D', 'E'])
+# print(df_1)
+
+dict_3 = {'one': pd.Series([1.,2.,3.], index=['a','b','c']),
+          'two': pd.Series([1.,2.,3.,4.], index=['a','b','c','d'])
+          }
+
+# print(dict_3['one'])
+# print(dict_3)
+
+df_2 = pd.DataFrame(dict_3)
+# print(df_2)
+
+df_3 = pd.DataFrame.from_dict(dict([('A', [1,2,3]), ('B', [4,5,6])]))
+# print(df_3)
+
+df_4 = pd.DataFrame.from_dict(dict([('A', [1,2,3]), ('B', [4,5,6])]), orient='index', columns=['one', 'two', 'three'])
+# print(df_4)
+
+# # to find out number of rows and columns
+# print(df_4.shape)
+
+print('-------------------------------------------------------------------')
+print('-------------------------------------------------------------------')
+
+# EDITING AND RETRIEVING DATA
+
+# print(df_1)
+
+# # retrieving one column
+# print(df_1['C'])
+
+# # retrieving 2 columns
+# print(df_1[['C', 'E']])
+
+# # retieving a row as a series
+# print(df_1.loc['A'])
+
+# # retrieving a row by index position
+# print(df_1.iloc[1])
+
+# # grabbing a cell with a row and column
+# print(df_1.loc['A', 'C'])
+
+# # getting multiple cells 
+# print(df_1.loc[['A', 'B'], ['D', 'E']])
+
+# # creating new columns
+df_1['Total'] = df_1['C'] + df_1['D'] + df_1['E']
+# print(df_1)
+
+# print(df_2)
+df_2['mult'] = df_2['one'] * df_2['two']
+# print(df_2)
+
+# # creating a new row
+dict_2 = {'C': 44, 'D': 45, 'E': 46}
+# new_row = pd.Series(dict_2, name='F')
+# df_1.loc[new_row.name] = new_row
+# # OR
+df_1.loc['F'] = dict_2
+# print(df_1)
+
+# # deleting a column
+df_1.drop('Total', axis=1, inplace=True)
+# print(df_1)
+
+# # deleting a row
+df_1.drop('B', axis=0, inplace=True)
+#print(df_1)
+
+# # creating a new column and making it the index
+df_1['Sex'] = ['Men', 'Women']
+df_1.set_index('Sex', inplace=True)
+# print(df_1)
+
+# # resetting the index values back to numbers
+# df_1.reset_index(inplace=True)
+
+# # create a column while leaving the original dataframe completely untouched
+# print(df_2)
+df_2_new = df_2.assign(div=df_2['one']/df_2['two'])
+# print(df_2_new)
+
+# or
+df_2_neww = df_2.assign(div=lambda x: (x['one']/x['two']))
+# print(df_2_neww)
+
+# Combine DataFrames while keeping df_3 data unless there is a NaN value
+df_3 = pd.DataFrame({'A': [1., np.nan, 3., np.nan]})
+df_4 = pd.DataFrame({'A': [8., 9., 2., 4.]})
+df_3.combine_first(df_4)
+
+# # CONDITIONAL SELECTION
+arr_2 = np.random.randint(10, 50, size=(2, 3))
+df_1 = pd.DataFrame(arr_2, ['A', 'B'], ['C', 'D', 'E'])
+# print(df_1)
+
+# using conditional operators to retrieve a table based on the condition
+# print("Greater than 40\n", df_1 > 40.0)
+
+# using comparison operater functions like gt, lt, ge, le, eq, ne
+# print("Greater than 45\n", df_1.gt(45.0))
+
+# placing conditions in brackets 
+bool_1 = df_1 >= 45.0
+df_1[bool_1]
+
+# Getting bools for a column
+df_1['E'] > 40
+
+# Returning a row if cell value in column matches a condition
+df_1[df_1['E']>30]
+
+# focusing on a column based on resulting dataframe
+df_2 = df_1[df_1['E']>30]
+df_2['C']
+
+# stacking commands
+# print(df_1[df_1['E']>20]['C'])
+# print()
+
+# grabbing multiple columns
+# print(df_1[df_1['E']>20][['C', 'D']])
+# print()
+
+# using multiple conditions
+arr_3 = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+df_2 = pd.DataFrame(arr_3, ['A', 'B', 'C'], ['X', 'Y', 'Z'])
+# print(df_2, "\n")
+# using or | to combine conditions as well
+df_2[(df_2['X']>3) & (df_2['X']<7)]
+
+
+# # FILE INPUT / OUTPUT
+import pymysql
+
+# Reading a CSV file
+# Type pd.read_ [TAB] to see the file types you can read
+cs_df = pd.read_csv('ComputerSales.csv')
+
+# Saving a CSV file (but don't save the index as a column )
+cs_df.to_csv('ComputerSalesBU.csv', index=False)
+
+# reading data from Excel, but not formulas and macros
+pd.read_excel('Financial Sample.xlsx',0)
+
+# Writing to Excel
+cs_df.to_excel('ComputerSales.xlsx')
+
+# Checking if written
+pd.read_excel('ComputerSales.xlsx',0)
+
+# Reading from MySQL Database
+try:
+    db_connection = pymysql.connect(db='students', user='studentadmin', passwd='TurtleDove', host='localhost', port=3306)
+
+    stud_df = pd.read_sql('SELECT * FROM students', con=db_connection)
+    # print(stud_df)
+except Exception as e:
+    print("Exception : {}".format(e))
+finally:
+    db_connection.close()
+    
+
+# Writing to table 
+try:
+    db_connection = pymysql.connect(db='students', user='studentadmin', passwd='TurtleDove', host='localhost', port=3306)
+    # Used to issue queries
+    cursor = db_connection.cursor()
+    # Query to enter new student
+    insert_stmt = "INSERT INTO students VALUES(NULL, 'Frank', 'Silva', 'fsilva@aol.com', '666 Hell St', 'Yakima', 'WA', 98901, '792-223-8966', '1959-2-22', 'M', NOW(), 3.50)"
+    # Execute query
+    cursor.execute(insert_stmt)
+    # Commit changes to DB
+    db_connection.commit()
+    stud_df = pd.read_sql('SELECT * FROM students', con=db_connection)
+    print(stud_df)
+except Exception as e:
+    print("Exception : {}".format(e))
+finally:
+    db_connection.close()
+
+# getting 1 column of data 
+cs_df_st = pd.read_csv('ComputerSales.csv', usecols=["State"], squeeze=True)
+cs_df_st
